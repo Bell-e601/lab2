@@ -4,3 +4,4 @@
 Изображения парсятся с сайта https://statusas.ru/citaty-i-aforizmy/citaty-pro-zhivotnyx-i-zverej/citaty-i-memy-volka-auf.html, затем, среди них выбирается случайное и отправляется пользователю
 ### Пример работы бота:
 ![Волк](https://user-images.githubusercontent.com/60125979/222948989-52f9a404-b3fc-4617-b468-5031c7042c9f.png)
+Ссылка на бота: https://t.me/Wooooolf_e601Bot
