@@ -28,10 +28,13 @@ wolf_images = parse()
 def choose_img():
     index = random.randrange(len(wolf_images))
     return wolf_images[index]
-
-token_file = open('config.token', 'r')
-token = token_file.read()
-bot = telebot.TeleBot(token)
+try:
+    token_file = open('config.token', 'r')
+    token = token_file.read()
+    bot = telebot.TeleBot(token)
+except Exception as _ex:
+    print(_ex)
+    sys.exit()
 
 @bot.message_handler(commands=['start'])
 def start(message):
