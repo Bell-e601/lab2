@@ -3,13 +3,18 @@ from telebot import types
 from bs4 import BeautifulSoup
 import requests
 import random
-
+from time import sleep
+import sys
 def parse():
 
-    url = 'https://statusas.ru/citaty-i-aforizmy/citaty-pro-zhivotnyx-i-zverej/citaty-i-memy-volka-auf.html'
-    page = requests.get(url)
+    URL = 'https://statusas.ru/citaty-i-aforizmy/citaty-pro-zhivotnyx-i-zverej/citaty-i-memy-volka-auf.html'
+    try:
+        page = requests.get(URL)
+    except Exception as _ex:
+        print(_ex)
+        sys.exit(0)
+        
     soup = BeautifulSoup(page.text, "html.parser")
-
     items = soup.findAll('img', class_="lazy")
     workers = []
     for data in items:
@@ -17,6 +22,7 @@ def parse():
             workers.append(data["data-src"])
 
     return workers
+
 wolf_images = parse()
 
 def choose_img():
@@ -40,4 +46,10 @@ def message_reply(message):
     if message.text=="🐺 Замотивироваться 🐺" or message.text=="🐺 Тоже замотивироваться 🐺":
         img = choose_img()
         bot.send_photo(message.chat.id,img)
-bot.polling(non_stop=True)
+        
+while True:
+    try:
+        bot.polling(none_stop=True)
+    except Exception as _ex:
+        print(_ex)
+        sleep(15)
